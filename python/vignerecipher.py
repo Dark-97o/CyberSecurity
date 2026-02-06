@@ -43,7 +43,6 @@ def decrypt(ciphertext, key):
 
 while True:
     print("==========================")
-    print("VIGENÈRE CIPHER")
     print("1. Encrypt")
     print("2. Decrypt")
     print("3. Exit")
