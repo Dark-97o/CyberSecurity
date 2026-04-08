@@ -15,7 +15,8 @@ n = p * q
 phi = (p-1)*(q-1)
 
 # public exponent e
-e = int(input(f"Enter public exponent e (gcd(e, {phi})=1): "))
+e = int(input(f"Enter public exponent e -> (gcd(e, {phi})=1): "))
+
 # d is the private exponent used for signing
 d = modInverse(e, phi)
 

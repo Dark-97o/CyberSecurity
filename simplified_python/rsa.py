@@ -1,9 +1,5 @@
 # RSA Algorithm - Simple Implementation
 
-# Function to find greatest common divisor
-def gcd(a, b):
-    while b: a, b = b, a % b
-    return a
 
 # Function to find the modular multiplicative inverse of e mod phi
 def modInverse(e, phi):
@@ -24,7 +20,7 @@ phi = (p - 1) * (q - 1)
 print(f"n = {n}, phi = {phi}")
 
 # 2. Choose public exponent e (must be coprime to phi)
-e = int(input(f"Enter e (1 < e < {phi} & gcd(e, phi)=1): "))
+e = int(input(f"Enter public exponent e -> (gcd(e, {phi})=1): "))
 
 # 3. Calculate private exponent d
 d = modInverse(e, phi)

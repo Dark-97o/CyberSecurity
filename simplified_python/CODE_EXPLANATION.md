@@ -87,4 +87,19 @@ signature = pow(msg, d, n)
 
 # Verify with e (Public):
 verified_msg = pow(signature, e, n)
+
+---
+
+## 8. MD5 Hashing (`md5.py`)
+### Code Logic:
+- **`hashlib` library**: Since MD5 uses complex bitwise operations on 512-bit blocks, we use the standard `hashlib` library for reliability.
+- **One-Way Mapping**: The script demonstrates that `hexdigest()` always produces a 32-character output regardless of input length.
+- **No Decryption**: The explanation emphasizes that hashes are designed to be impossible to reverse.
+
+```python
+# Create the hash object:
+md5_hash = hashlib.md5(encoded_text)
+# Get the final 128-bit result in hex:
+result = md5_hash.hexdigest()
+```
 ```
