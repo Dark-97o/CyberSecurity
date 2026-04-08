@@ -22,7 +22,6 @@ def encrypt(plaintext, key):
     key = generate_key(plaintext, key)
 
     cipher = ""
-
     for p, k in zip(plaintext, key):
         c = (ord(p) - 65 + ord(k) - 65) % 26
         cipher += chr(c + 65)
@@ -34,12 +33,14 @@ def decrypt(ciphertext, key):
     key = generate_key(ciphertext, key)
 
     plaintext = ""
-
     for c, k in zip(ciphertext, key):
         p = (ord(c) - 65 - (ord(k) - 65)) % 26
         plaintext += chr(p + 65)
 
     return plaintext
+
+
+last_cipher = None  # stores last encrypted text
 
 while True:
     print("==========================")
@@ -54,11 +55,29 @@ while True:
         key = input("Enter keyword: ")
         print("Encrypting...")
         time.sleep(0.8)
-        print("Encrypted:", encrypt(msg, key))
+
+        last_cipher = encrypt(msg, key)
+        print("Encrypted:", last_cipher)
         time.sleep(0.8)
 
     elif ch == 2:
-        cipher = input("Enter ciphertext: ")
+        if last_cipher:
+            print("1. Use existing ciphertext")
+            print("2. Enter new ciphertext")
+            opt = int(input("Choose option: "))
+
+            if opt == 1:
+                cipher = last_cipher
+                print("Using existing ciphertext:", cipher)
+            elif opt == 2:
+                cipher = input("Enter ciphertext: ")
+            else:
+                print("Invalid option!")
+                continue
+        else:
+            print("No existing ciphertext found.")
+            cipher = input("Enter ciphertext: ")
+
         key = input("Enter keyword: ")
         print("Decrypting...")
         time.sleep(0.8)
