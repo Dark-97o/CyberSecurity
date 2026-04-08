@@ -3,16 +3,19 @@
 # Function to handle both encryption and decryption
 def caesar(text, shift):
     result = ""
-    # Iterate through each wordacter in the input text
-    for word in text:
+    # Iterate through each character in the input text
+    for char in text:
+        # Check if character is an alphabetical letter
+        # This ensures spaces, numbers, and punctuation are NOT shifted
+        if char.isalpha():
             # Identify if it's uppercase or lowercase to find the correct ASCII starting point
-            start = ord('A') if word.isupper() else ord('a')
+            start = ord('A') if char.isupper() else ord('a')
             
-            # 1. (ord(word) - start): Normalize letter to 0-25 range
-            # 2. (+ shift): Apply the shift
-            # 3. (% 26): Wrap around if it goes past 'Z' or 'z'
-            # 4. (+ start): Convert back to original ASCII range
-            result += chr((ord(word) - start + shift) % 26 + start)
+            # Apply shift and keep it within 0-25 range using modulo 26
+            result += chr((ord(char) - start + shift) % 26 + start)
+        else:
+            # If not a letter, leave it as is
+            result += char
     return result
 
 # --- Main Execution ---
